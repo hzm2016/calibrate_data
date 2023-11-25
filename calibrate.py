@@ -9,6 +9,7 @@ import copy as cp
 from scipy.io import savemat   
 
 
+
 def calibrate(): 
     # Define the number of corners in the chessboard pattern
     num_corners_x = 7   
@@ -80,7 +81,7 @@ def calibrate():
 def cal_cart_pos(index, num_corners_x = 7, num_corners_y = 6, square_size=0.0235):      
     # # Create an array to store the object points and image points from all the images
     # obj_points = []   
-    loaded_data = np.load(current_directory + '/test_main/data/calibration_' + str(index) + '.npz')  
+    loaded_data = np.load('./data/calibration_' + str(index) + '.npz')  
     position = loaded_data['position']    
     ori = loaded_data['orientation']    
     print("positin :", position)     
@@ -135,7 +136,7 @@ def cal_corners(start_index=1, use_num=3):
     for index in range(start_index, start_index+use_num):        
         objp, objp_word = cal_cart_pos(index, num_corners_x=7, num_corners_y=6, square_size=0.0235)    
         
-        frame = cv2.imread('./test_main/data/calibration_' + str(index) + '.png')   
+        frame = cv2.imread('./data/calibration_' + str(index) + '.png')   
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)    
 
         # Find the corners in the chessboard pattern
